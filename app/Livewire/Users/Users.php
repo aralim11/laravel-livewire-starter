@@ -3,6 +3,7 @@
 namespace App\Livewire\Users;
 
 use App\Models\User;
+use Illuminate\Contracts\Pagination\Paginator;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -10,10 +11,11 @@ class Users extends Component
 {
 
     use WithPagination;
+    public $searchText = '';
+    public $users = [];
 
     public function deleteUser($userId)
     {
-        // Find user by ID and delete
         $user = User::find($userId);
         if ($user) {
             $user->delete();
@@ -21,10 +23,27 @@ class Users extends Component
         }
     }
 
+    public function updatedSearchText()
+    {
+        $this->resetPage();
+
+        $this->users = User::latest()->Paginate(5);
+
+        // if (!empty($this->searchText)) {
+        //     $query->where('name', 'like', '%' . $this->searchText . '%')
+        //         ->orWhere('email', 'like', '%' . $this->searchText . '%');
+        // }
+    }
+
     public function render()
     {
-        return view('livewire.users.users', [
-            'users' => User::latest()->paginate(10)
-        ]);
+        // $query = User::query();
+
+        // if (!empty($this->searchText)) {
+        //     $query->where('name', 'like', '%' . $this->searchText . '%')
+        //         ->orWhere('email', 'like', '%' . $this->searchText . '%');
+        // }
+
+        return view('livewire.users.users');
     }
 }

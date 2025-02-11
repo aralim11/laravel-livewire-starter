@@ -5,19 +5,20 @@ namespace App\Livewire\Users;
 use App\Models\User;
 use Livewire\Component;
 use Illuminate\Support\Facades\Hash;
+use Livewire\Attributes\Validate;
 
 class CreateUser extends Component
 {
 
+    #[Validate(('required|string|min:3'))]
     public $name;
+
+    #[Validate(('required|email|unique:users,email'))]
     public $email;
 
     public function createUser()
     {
-        $this->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-        ]);
+        $this->validate();
 
         User::create([
             'name' => $this->name,

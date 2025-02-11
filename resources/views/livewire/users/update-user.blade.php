@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
                         <h2 class="text-2xl font-semibold mb-6 text-center">Update User</h2>
-                        @if (session()->has('message'))
+                        @if (session()->has(' message'))
                         <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded mb-4">
                             {{ session('message') }}
                         </div>
