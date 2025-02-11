@@ -20,14 +20,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $user)
+                                @foreach ($users as $key => $user)
                                 <tr class="border-b hover:bg-gray-50">
-                                    <td class="px-4 py-2">1</td>
+                                    <td class="px-4 py-2">{{ $users->firstItem() + $key }}</td>
                                     <td class="px-4 py-2">{{ $user->name }}</td>
                                     <td class="px-4 py-2">{{ $user->email }}</td>
                                     <td class="px-4 py-2">
-                                        <a href="#" class="text-blue-500 hover:underline">Edit</a>
-                                        <a href="#" class="text-red-500 hover:underline ml-2">Delete</a>
+                                        <a href="/users-update/{{ $user->id }}"
+                                            class="text-blue-500 hover:underline cursor-pointer" wire:navigate>Edit</a>
+                                        <a wire:click="deleteUser({{ $user->id }})"
+                                            class="text-red-500 hover:underline ml-2 cursor-pointer">Delete</a>
                                     </td>
                                 </tr>
                                 @endforeach
