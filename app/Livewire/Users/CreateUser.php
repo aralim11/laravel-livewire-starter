@@ -2,34 +2,19 @@
 
 namespace App\Livewire\Users;
 
-use App\Models\User;
+use App\Livewire\Forms\UserForm;
 use Livewire\Component;
-use Illuminate\Support\Facades\Hash;
-use Livewire\Attributes\Validate;
 
 class CreateUser extends Component
 {
 
-    #[Validate(('required|string|min:3'))]
-    public $name;
-
-    #[Validate(('required|email|unique:users,email'))]
-    public $email;
+    public UserForm $form;
 
     public function createUser()
     {
-        $this->validate();
+        $this->form->store();
 
-        User::create([
-            'name' => $this->name,
-            'email' => $this->email,
-            'password' => Hash::make('password'),
-        ]);
-
-        session()->flash('message', 'User created successfully!');
-
-        $this->name = '';
-        $this->email = '';
+        return $this->redirect('/users', navigate: true);
     }
 
     public function render()

@@ -5,20 +5,21 @@
         </h2>
     </x-slot> --}}
 
+
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
                         <h2 class="text-2xl font-semibold mb-6 text-center">Create Account</h2>
-                        <form wire:submit.prevent="createUser()">
+                        <form wire:submit.prevent="createUser">
                             <!-- Name Field -->
                             <div class="mb-4">
                                 <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                                <input type="text" id="name" wire:model="name"
+                                <input type="text" id="name" wire:model.blur="form.name"
                                     class="w-full p-3 mt-1 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
                                     placeholder="Your full name">
-                                @error('name') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                                @error('form.name') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                             </div>
 
                             <!-- Email Field -->
