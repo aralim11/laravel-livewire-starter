@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\LanguageSwitcher;
 use App\Livewire\Users\CreateUser;
 use App\Livewire\Users\UpdateUser;
 use App\Livewire\Users\Users;
@@ -8,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'welcome');
 
 Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
+    ->middleware(['auth', 'verified', 'locale'])
     ->name('dashboard');
 
 Route::view('profile', 'profile')
@@ -16,7 +17,7 @@ Route::view('profile', 'profile')
     ->name('profile');
 
 Route::get('/users', Users::class)
-    ->middleware(['auth'])
+    ->middleware(['auth', 'locale'])
     ->name('users');
 
 Route::get('/users-create', CreateUser::class)
@@ -26,5 +27,8 @@ Route::get('/users-create', CreateUser::class)
 Route::get('/users-update/{id}', UpdateUser::class)
     ->middleware(['auth'])
     ->name('users.update');
+
+## localization
+Route::get('/localization/{locale}', LanguageSwitcher::class)->name('localization');
 
 require __DIR__ . '/auth.php';
