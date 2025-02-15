@@ -7,7 +7,8 @@
 
                 <div class="flex items-center space-x-2">
                     <!-- Search Input -->
-                    <input type="text" wire:model.live.debounce="searchText" placeholder="{{$search_title}}"
+                    <input type="text" wire:model.live.debounce="searchText"
+                        placeholder="{{__('user.table.search_title')}}"
                         class="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
 
                     <!-- Add Button -->
@@ -19,7 +20,7 @@
                                 d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                                 clip-rule="evenodd" />
                         </svg>
-                        {{ $add_user_btn }}
+                        {{ __('user.add_user_btn') }}
                     </a>
                 </div>
             </div>
@@ -28,10 +29,10 @@
                 <table class="min-w-full border border-gray-300 bg-white shadow-md rounded-lg">
                     <thead>
                         <tr class="bg-gray-100 border-b">
-                            <th class="px-4 py-2 text-left text-gray-600">{{ $id }}</th>
-                            <th class="px-4 py-2 text-left text-gray-600">{{ $name }}</th>
-                            <th class="px-4 py-2 text-left text-gray-600">{{ $email }}</th>
-                            <th class="px-4 py-2 text-left text-gray-600">{{ $action }}</th>
+                            <th class="px-4 py-2 text-left text-gray-600">{{ __('user.table.id') }}</th>
+                            <th class="px-4 py-2 text-left text-gray-600">{{ __('user.table.name') }}</th>
+                            <th class="px-4 py-2 text-left text-gray-600">{{ __('user.table.email') }}</th>
+                            <th class="px-4 py-2 text-left text-gray-600">{{ __('user.table.action') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,10 +44,10 @@
                             <td class="px-4 py-2">
                                 <a href="/users-update/{{ $user->id }}"
                                     class="text-blue-500 hover:underline cursor-pointer"
-                                    wire:navigate>{{$edit_title}}</a>
+                                    wire:navigate>{{__('user.table.edit_title')}}</a>
                                 <a wire:click="deleteUser({{ $user->id }})"
                                     wire:confirm="Are you sure you want to delete?"
-                                    class="text-red-500 hover:underline ml-2 cursor-pointer">{{$delete_title}}</a>
+                                    class="text-red-500 hover:underline ml-2 cursor-pointer">{{__('user.table.delete_title')}}</a>
                             </td>
                         </tr>
                         @endforeach

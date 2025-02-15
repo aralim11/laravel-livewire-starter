@@ -17,7 +17,6 @@ class LanguageSwitcherMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $sessionLocale = 'en';
         if ($request->session()->has('locale')) {
             $sessionLocale = $request->session()->get('locale');
             App::setlocale($sessionLocale);

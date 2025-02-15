@@ -13,7 +13,7 @@ Route::view('dashboard', 'dashboard')
     ->name('dashboard');
 
 Route::view('profile', 'profile')
-    ->middleware(['auth'])
+    ->middleware(['auth', 'locale'])
     ->name('profile');
 
 Route::get('/users', Users::class)
@@ -21,11 +21,11 @@ Route::get('/users', Users::class)
     ->name('users');
 
 Route::get('/users-create', CreateUser::class)
-    ->middleware(['auth'])
+    ->middleware(['auth', 'locale'])
     ->name('users.create');
 
 Route::get('/users-update/{id}', UpdateUser::class)
-    ->middleware(['auth'])
+    ->middleware(['auth', 'locale'])
     ->name('users.update');
 
 ## localization
