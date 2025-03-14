@@ -35,11 +35,13 @@ new class extends Component
                     </x-nav-link>
                 </div>
 
+                @can('users.index')
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('users')" :active="request()->routeIs('users')" wire:navigate>
+                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')" wire:navigate>
                         {{ __('navigation.users') }}
                     </x-nav-link>
                 </div>
+                @endcan
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('localization', 'bn')" wire:navigate>
@@ -58,8 +60,6 @@ new class extends Component
                         {{ __('Japanese') }}
                     </x-nav-link>
                 </div>
-
-
             </div>
 
             <!-- Settings Dropdown -->
@@ -122,7 +122,8 @@ new class extends Component
         </div>
 
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('users')" :active="request()->routeIs('users')" wire:navigate>
+            <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')"
+                wire:navigate>
                 {{ __('navigation.users') }}
             </x-responsive-nav-link>
         </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\LanguageSwitcher;
+use App\Livewire\Role\Role;
 use App\Livewire\Users\CreateUser;
 use App\Livewire\Users\UpdateUser;
 use App\Livewire\Users\Users;
@@ -8,27 +9,23 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified', 'locale'])
-    ->name('dashboard');
+Route::middleware(['locale', 'auth'])->group(function () {
+    ## dashboard
+    Route::view('dashboard', 'dashboard')->middleware(['verified'])->name('dashboard');
 
-Route::view('profile', 'profile')
-    ->middleware(['auth', 'locale'])
-    ->name('profile');
+    ## user
+    Route::get('/users', Users::class)->middleware(['can:users.index'])->name('users.index');
+    Route::get('/users-create', CreateUser::class)->middleware(['can:users.create'])->name('users.create');
+    Route::get('/users-update/{id}', UpdateUser::class)->middleware(['can:users.update'])->name('users.update');
 
-Route::get('/users', Users::class)
-    ->middleware(['auth', 'locale'])
-    ->name('users');
+    ## user
+    Route::get('/role', Role::class)->middleware(['can:users.index'])->name('role');
 
-Route::get('/users-create', CreateUser::class)
-    ->middleware(['auth', 'locale'])
-    ->name('users.create');
+    ## profile
+    Route::view('profile', 'profile')->name('profile');
 
-Route::get('/users-update/{id}', UpdateUser::class)
-    ->middleware(['auth', 'locale'])
-    ->name('users.update');
-
-## localization
-Route::get('/localization/{locale}', LanguageSwitcher::class)->name('localization');
+    ## localization
+    Route::get('/localization/{locale}', LanguageSwitcher::class)->name('localization');
+});
 
 require __DIR__ . '/auth.php';

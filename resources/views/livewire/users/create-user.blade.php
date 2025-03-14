@@ -35,10 +35,10 @@
                     <!-- Email Field -->
                     <div class="mb-4">
                         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                        <input type="email" id="email" wire:model="email"
+                        <input type="email" id="email" wire:model="form.email"
                             class="w-full p-3 mt-1 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
                             placeholder="you@example.com">
-                        @error('email') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                        @error('form.email') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                     </div>
 
                     <!-- Submit Button -->
