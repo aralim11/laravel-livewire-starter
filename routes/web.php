@@ -1,7 +1,7 @@
 <?php
 
 use App\Livewire\LanguageSwitcher;
-use App\Livewire\Role\Role;
+use App\Livewire\Roles\Roles;
 use App\Livewire\Users\CreateUser;
 use App\Livewire\Users\UpdateUser;
 use App\Livewire\Users\Users;
@@ -14,12 +14,12 @@ Route::middleware(['locale', 'auth'])->group(function () {
     Route::view('dashboard', 'dashboard')->middleware(['verified'])->name('dashboard');
 
     ## user
-    Route::get('/users', Users::class)->middleware(['can:users.index'])->name('users.index');
+    Route::get('/users', Users::class)->name('users.index');
     Route::get('/users-create', CreateUser::class)->middleware(['can:users.create'])->name('users.create');
     Route::get('/users-update/{id}', UpdateUser::class)->middleware(['can:users.update'])->name('users.update');
 
-    ## user
-    Route::get('/role', Role::class)->middleware(['can:users.index'])->name('role');
+    ## roles
+    Route::get('/roles', Roles::class)->middleware(['can:roles.index'])->name('roles.index');
 
     ## profile
     Route::view('profile', 'profile')->name('profile');

@@ -2,10 +2,10 @@
 
 namespace App\Livewire\Users;
 
-use App\Livewire\Forms\UserForm;
-use App\Traits\Notifications;
 use Livewire\Component;
-use Jantinnerezo\LivewireAlert\Facades\LivewireAlert;
+use App\Traits\Notifications;
+use App\Livewire\Forms\UserForm;
+use App\Events\NotificationEvent;
 
 class CreateUser extends Component
 {
@@ -15,6 +15,7 @@ class CreateUser extends Component
 
     public function createUser()
     {
+        ## store user
         $this->form->store();
 
         ## show alert
@@ -24,7 +25,10 @@ class CreateUser extends Component
             'info'
         );
 
+        ## broadcast event notification
+        event(new NotificationEvent("User Created: "));
 
+        ## reset form
         $this->reset();
     }
 

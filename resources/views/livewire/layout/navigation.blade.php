@@ -12,7 +12,7 @@ new class extends Component
     {
         $logout();
 
-        $this->redirect('/', navigate: true);
+        $this->redirect('/login', navigate: true);
     }
 }; ?>
 
@@ -35,10 +35,18 @@ new class extends Component
                     </x-nav-link>
                 </div>
 
-                @can('users.index')
+                {{-- @can('users.index') --}}
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')" wire:navigate>
                         {{ __('navigation.users') }}
+                    </x-nav-link>
+                </div>
+                {{-- @endcan --}}
+
+                @can('roles.index')
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('roles.index')" :active="request()->routeIs('roles.index')" wire:navigate>
+                        {{ __('navigation.roles') }}
                     </x-nav-link>
                 </div>
                 @endcan

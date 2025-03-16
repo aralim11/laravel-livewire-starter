@@ -4,4 +4,5 @@ return [
     'users' => 'ユーザー',
     'logout' => 'ログアウト',
     'profile' => 'プロフィール',
+    'roles' => '役割',
 ];

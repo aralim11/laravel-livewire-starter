@@ -36,16 +36,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($users as $key => $user)
+                        @foreach ($roles as $key => $role)
                         <tr class="border-b hover:bg-gray-50" wire:key="{{ $key }}">
-                            <td class="px-4 py-2">{{ $users->firstItem() + $key }}</td>
-                            <td class="px-4 py-2">{{ $user->name }}</td>
-                            <td class="px-4 py-2">{{ $user->email }}</td>
+                            <td class="px-4 py-2">{{ $roles->firstItem() + $key }}</td>
+                            <td class="px-4 py-2">{{ $role->name }}</td>
+                            <td class="px-4 py-2">{!! __showPermissionsName($role->permissions) !!}</td>
                             <td class="px-4 py-2">
-                                <a href="/users-update/{{ $user->id }}"
+                                <a href="/users-update/{{ $role->id }}"
                                     class="text-blue-500 hover:underline cursor-pointer"
                                     wire:navigate>{{__('user.table.edit_title')}}</a>
-                                <a wire:click="deleteUser({{ $user->id }})"
+                                <a wire:click="deleteUser({{ $role->id }})"
                                     wire:confirm="Are you sure you want to delete?"
                                     class="text-red-500 hover:underline ml-2 cursor-pointer">{{__('user.table.delete_title')}}</a>
                             </td>
@@ -56,7 +56,7 @@
 
                 <!-- Pagination Links -->
                 <div class="mt-4">
-                    {{ $users->links() }}
+                    {{ $roles->links() }}
                 </div>
             </div>
         </div>

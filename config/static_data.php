@@ -14,7 +14,7 @@ return [
             ],
         ],
         'roles' => [
-            'label' => 'role permissions',
+            'label' => 'roles permissions',
             'list' => [
                 ['name' => 'roles.index'],
                 ['name' => 'roles.create'],

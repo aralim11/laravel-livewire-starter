@@ -4,6 +4,7 @@ namespace App\Livewire\Users;
 
 use App\Models\User;
 use Livewire\Component;
+use Livewire\Attributes\On;
 use Livewire\WithPagination;
 
 class Users extends Component
