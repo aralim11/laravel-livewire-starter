@@ -15,13 +15,13 @@ class NotificationEvent implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public string $message;
+    public int $id;
     /**
      * Create a new event instance.
      */
-    public function __construct(string $message)
+    public function __construct(int $id)
     {
-        $this->message = $message;
+        $this->id = $id;
     }
 
     /**
@@ -29,9 +29,10 @@ class NotificationEvent implements ShouldBroadcastNow
      *
      * @return array<int, \Illuminate\Broadcasting\Channel>
      */
-    public function broadcastOn()
+    public function broadcastOn(): Channel
     {
-        return ['user-channel'];
+        // return ['user-channel'];
+        return new PrivateChannel('user-channel.' . auth()->user()->id);
     }
 
     public function broadcastAs()

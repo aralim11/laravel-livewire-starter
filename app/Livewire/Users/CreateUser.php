@@ -26,7 +26,7 @@ class CreateUser extends Component
         );
 
         ## broadcast event notification
-        event(new NotificationEvent("User Created: "));
+        event(new NotificationEvent(auth()->user()->id));
 
         ## reset form
         $this->reset();
